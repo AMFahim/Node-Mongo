@@ -3,7 +3,14 @@ const app = express()
 const port = 3000
 
 app.get('/', (req, res) => {
-  res.send('Hello Programmer')
+  const fruit = {
+    product:'Tormuz',
+    price: 340
+  }
+  res.send(fruit)
+})
+app.get('/fruit/bangi', (req, res) => {
+  res.send({fruit:'bangi', quantity:34, price:50})
 })
 
 
