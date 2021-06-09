@@ -1,8 +1,15 @@
-const express = require('express')
-const app = express()
+const express = require('express');
+const app = express();
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const { Router } = require('express');
 const port = 4000
+app.use(cors())
+app.use(bodyParser.json())
 
 const users = ['Sogir Ali', 'Mogir Ali', 'Togir Ali', 'Bogir Ali', 'Nodir Ali'];
+
+   //get
 
 app.get('/', (req, res) => {
   const fruit = {
@@ -11,9 +18,7 @@ app.get('/', (req, res) => {
   }
   res.send(fruit)
 })
-app.get('/fruit/bangi', (req, res) => {
-  res.send({fruit:'bangi', quantity:34, price:50})
-})
+
 app.get('/users/:id'), (req, res) => {
 //  console.log(req.params.id)
  const id = req.params.id;
@@ -21,5 +26,17 @@ app.get('/users/:id'), (req, res) => {
  const name= users[id];
   res.send(name);
 }
+
+//POST
+app.post('/addUser', (req, res)=> {
+  // console.log('post req sent', req.body)
+  //save to database
+  const user = req.body;
+  user.id = 15;
+  res.send(user)
+})
+
+
+
 
 app.listen (port, () => console.log("listing port 4000"));
